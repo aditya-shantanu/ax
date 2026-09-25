@@ -66,25 +66,10 @@ AX schedules every task as a sandboxed actor on [Agent Substrate](https://github
 - [Go](https://go.dev/doc/install) and `kubectl`
 - [`ko`](https://ko.build/) (`brew install ko`) and a container registry your cluster can pull from
 
-To install Agent Substrate, follow the [Substrate README](https://github.com/agent-substrate/substrate#readme). For an existing cluster:
-
-```bash
-git clone https://github.com/agent-substrate/substrate && cd substrate
-./hack/install-ate.sh --deploy-ate-system
-```
-
-Or, to try everything locally on a fresh [kind](https://kind.sigs.k8s.io/) cluster:
-
-```bash
-hack/create-kind-cluster.sh
-hack/install-ate-kind.sh --deploy-ate-system
-```
-
-Either way, Substrate lands in the `ate-system` namespace and exposes its Control API at `api.ate-system.svc.cluster.local:443`, which is where AX expects to find it. Verify it is up before moving on:
+To install Agent Substrate, follow the instructions in the [Substrate README](https://github.com/agent-substrate/substrate#readme). Substrate lands in the `ate-system` namespace and exposes its Control API at `api.ate-system.svc.cluster.local:443`, which is where AX expects to find it. Verify it is up before moving on:
 
 ```bash
 kubectl get svc api -n ate-system
-kubectl get ds -n ate-system -l app=atelet -L ate.dev/substrate-version
 ```
 
 ### 1. Install the CLI
